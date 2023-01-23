@@ -16,7 +16,7 @@ export const createPosts = async (req, res) => {
     const newPost = new PostMessage(post) //the post values maps the PostMessages schema to create a new post in the db
     try {
         await newPost.save(); //asynchronous function, saves newPost in db
-        res.status(200).json(newPost);
+        res.status(201).json(newPost);
     } catch(err) {
         res.status(409).json({ message: err.message });
     }
