@@ -13,11 +13,12 @@ import postRoutes from './routes/posts.js';
 
 const app = express() //initializing app
 
-app.use('/posts', postRoutes)
-
 app.use(bodyParser.json({ limit: "30mb", extended: true })) //limit, as images will be passed to our app
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true })) //setting up bodyparser to send requests
 app.use(cors());
+
+
+app.use('/posts', postRoutes);
 
 //connect to databse 
 const CONNECTION_URL = process.env.CONNECTION_URL;
