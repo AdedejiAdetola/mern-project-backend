@@ -9,7 +9,7 @@ import cors from 'cors';
 
 
 import postRoutes from './routes/posts.js';
-
+import userRoutes from './routes/users.js';
 
 const app = express() //initializing app
 
@@ -19,6 +19,7 @@ app.use(cors());
 
 
 app.use('/posts', postRoutes);
+app.use('/users', userRoutes);
 
 //connect to databse 
 const CONNECTION_URL = process.env.CONNECTION_URL;
