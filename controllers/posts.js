@@ -14,7 +14,7 @@ export const getPosts = async (req, res) => {
 export const createPosts = async (req, res) => {
     const post = req.body; //post takes in the input passed from the frontend as a request (to create post containing the values gotten from the input) 
 
-    const newPost = new PostMessage(post) //the post values maps the PostMessages schema to create a new post in the db
+    const newPost = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString()}) //the post values maps the PostMessages schema to create a new post in the db
     try {
         await newPost.save(); //asynchronous function, saves newPost in db
         res.status(201).json(newPost);
@@ -45,6 +45,8 @@ export const deletePosts = async (req, res) => {
 export const likePosts = async (req, res) => {
     const { id } = req.params;
 
+    if(!req.userId) return res.json({ message: 'Unauthenticated'})
+
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No post with that id');
 
     const post = await PostMessage.findById(id);
@@ -58,6 +60,7 @@ export const likePosts = async (req, res) => {
     }
 
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true});
+    console.log(updatedPost)
 
     res.status(200).json(updatedPost);
 

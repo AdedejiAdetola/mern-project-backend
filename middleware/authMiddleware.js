@@ -2,8 +2,10 @@ import jwt from 'jsonwebtoken';
 
 const authMiddleware = async(req, res, next) => {
     try {
+        
         const token = req.headers.authorization.split(" ")[1];
-        const isCustomAuth = token.length > 71;
+        //console.log("authtoken", token)
+        const isCustomAuth = token.length < 500;
         
         let decodedData;
 
