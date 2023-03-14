@@ -19,7 +19,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true })) //limit, as images w
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true })) //setting up bodyparser to send requests
 app.use(
     cors({
-        origin: [`http://localhost:${PORT}`, "https://memories-mern-app.onrender.com"]
+        origin: [`http://localhost:${PORT}`, "https://memories-mern-app-wbcl.onrender.com"]
     })
 );
 
