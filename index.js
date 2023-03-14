@@ -17,11 +17,7 @@ const app = express() //initializing app
 const PORT = process.env.PORT;
 app.use(bodyParser.json({ limit: "30mb", extended: true })) //limit, as images will be passed to our app
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true })) //setting up bodyparser to send requests
-app.use(
-    cors({
-        origin: [`http://localhost:${PORT}`, "https://memories-mern-app.onrender.com"]
-    })
-);
+app.use(cors());
 
 
 app.use('/posts', postRoutes);
